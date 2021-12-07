@@ -25,42 +25,22 @@ export default {
       >
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/createUser">Create User</router-link>
+            <router-link to="/Seguridad.vue">Seguridad</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/users">Usuario</router-link>
+            <router-link to="/Administracion.vue">Administracion</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>Fizz</v-list-item-title>
-           <router-link to="/Seguridad">Seguridad</router-link>
+           <router-link to="/Consultas.vue">Consultas</router-link>
         </v-list-item>
 
-        <v-list-item>
-          <v-list-item-title>Buzz</v-list-item-title>
-           <router-link to="/Administracion">Administracipn</router-link>
-        </v-list-item>
-    
-        <v-list-item>
-          <v-list-item-title>Foo</v-list-item-title>
-           <router-link to="/Consultas">Consultas</router-link>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Bar</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Fizz</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Buzz</v-list-item-title>
-        </v-list-item>
+        
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
