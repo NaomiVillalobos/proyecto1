@@ -31,20 +31,23 @@ export default {
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/users">Create User</router-link>
+            <router-link to="/users">Usuario</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>Fizz</v-list-item-title>
+           <router-link to="/Seguridad">Seguridad</router-link>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>Buzz</v-list-item-title>
+           <router-link to="/Administracion">Administracipn</router-link>
         </v-list-item>
     
         <v-list-item>
           <v-list-item-title>Foo</v-list-item-title>
+           <router-link to="/Consultas">Consultas</router-link>
         </v-list-item>
 
         <v-list-item>
