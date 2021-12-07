@@ -25,29 +25,29 @@ export default {
       >
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Consecutivos">Consecutivos</router-link>
+            <router-link to="/Consecutivos.vue">Consecutivos</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Parametros">Parametros</router-link>
+            <router-link to="/Parametros.vue">Parametros</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>Fizz</v-list-item-title>
-           <router-link to="/Peliculas">Peliculas</router-link>
+           <router-link to="/Peliculas.vue">Peliculas</router-link>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>Buzz</v-list-item-title>
-           <router-link to="/Libros">Libros</router-link>
+           <router-link to="/Libros.vue">Libros</router-link>
         </v-list-item>
     
         <v-list-item>
           <v-list-item-title>Foo</v-list-item-title>
-           <router-link to="/Musica">Musica</router-link>
+           <router-link to="/Musica.vue">Musica</router-link>
         </v-list-item>
 
       
