@@ -1,0 +1,15 @@
+<div id="app">
+<h1>{{ message }} </h1>
+</div>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+<script>
+new Vue({
+el: '#app',
+data: {
+message: "Bienvenido a nuestra pagina"
+}
+})
+</script>
