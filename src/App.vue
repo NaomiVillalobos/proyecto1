@@ -7,19 +7,7 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
-    users: [],
   }),
-
-  mounted() {
-    this.getData();
-  },
-
-  methods: {
-    async getData() {
-      let res = await fetch("http://localhost:3000/users");
-      this.users = await res.json();
-    },
-  },
 
   watch: {
     group() {
@@ -35,13 +23,14 @@ export default {
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
     <the-menu :drawer="drawer"></the-menu>
-    <v-card-text style="height: 100%">
-      <ul>
-        <li v-for="(user, index) in users" :key="index">
-          {{ user.name }}
-        </li>
-      </ul>
-      <router-view></router-view>
+    <v-card-text style="height: 150%">
+      <container>
+        <v-row>
+          <v-col>
+            <router-view></router-view>
+          </v-col>
+        </v-row>
+      </container>
     </v-card-text>
   </v-card>
 </template>

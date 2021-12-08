@@ -9,8 +9,14 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "msnodesqlv8": "^2.4.3",
+    "npm": "^8.2.0",
+    "path": "^0.12.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-sweetalert2": "^5.0.2",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

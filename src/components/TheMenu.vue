@@ -3,10 +3,10 @@ export default {
   data: () => ({
     group: null,
   }),
-  props : {
-      drawer : {
-        type : Boolean
-      }
+  props: {
+    drawer: {
+      type: Boolean,
+    },
   },
   watch: {
     group() {
@@ -17,7 +17,6 @@ export default {
 </script>
 <template>
   <v-navigation-drawer v-model="drawer" absolute bottom temporary>
-    
     <v-list nav dense>
       <v-list-item-group
         v-model="group"
@@ -25,13 +24,7 @@ export default {
       >
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/createUser">Create User</router-link>
-          </v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>
-            <router-link to="/users">Create User</router-link>
+            <router-link to="/users">Usuarios</router-link>
           </v-list-item-title>
         </v-list-item>
 
@@ -42,7 +35,7 @@ export default {
         <v-list-item>
           <v-list-item-title>Buzz</v-list-item-title>
         </v-list-item>
-    
+
         <v-list-item>
           <v-list-item-title>Foo</v-list-item-title>
         </v-list-item>
