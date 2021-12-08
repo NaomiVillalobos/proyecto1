@@ -12,7 +12,7 @@
  <div id="app">
    <input v-model='search' />
     <ul v-for="item in searchData ">
-    <li> {(item.name}}, usuario: {{item.usuario}} </ li>
+    <li> {(item.name}}, usuario: {{item.usuario}} </li>
    </ul>
  </div>
  
