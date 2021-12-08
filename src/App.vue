@@ -19,13 +19,14 @@ export default {
 
 <template>
   <v-card class="mx-auto overflow-hidden" height="500px">
-    <v-app-bar color="deep-purple accent-4" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    </v-app-bar>
-    <the-menu :drawer="drawer"></the-menu>
+    <v-app-bar color="deep-purple accent-4" dark> </v-app-bar>
+
     <v-card-text style="height: 150%">
       <container>
         <v-row>
+          <v-col md="2">
+            <the-menu :drawer="true"></the-menu>
+          </v-col>
           <v-col>
             <router-view></router-view>
           </v-col>
