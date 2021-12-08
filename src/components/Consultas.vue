@@ -25,29 +25,35 @@ export default {
       >
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Bitacora.vue">Bitacora</router-link>
+            <router-link to="/Consecutivos">Consecutivos</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Transacciones.vue">Transacciones</router-link>
+            <router-link to="/Parametros">Parametros</router-link>
+          </v-list-item-title>
+        </v-list-item>
+        
+        <v-list-item>
+          <v-list-item-title>
+            <router-link to="/Peliculas">Peliculas</router-link>
+          </v-list-item-title>
+        </v-list-item>
+        
+         <v-list-item>
+          <v-list-item-title>
+            <router-link to="/Libros">Libros</router-link>
+          </v-list-item-title>
+        </v-list-item>
+        
+         <v-list-item>
+          <v-list-item-title>
+            <router-link to="/Musica">Musica</router-link>
           </v-list-item-title>
         </v-list-item>
 
-        <v-list-item>
-          <v-list-item-title>Fizz</v-list-item-title>
-           <router-link to="/Descargas.vue">Descargas</router-link>
-        </v-list-item>
 
-        <v-list-item>
-          <v-list-item-title>Buzz</v-list-item-title>
-           <router-link to="/Errores.vue">Errores</router-link>
-        </v-list-item>
-    
- 
-
-      
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
