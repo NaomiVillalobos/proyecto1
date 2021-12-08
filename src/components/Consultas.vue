@@ -25,33 +25,28 @@ export default {
       >
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Consecutivos">Consecutivos</router-link>
+            <router-link to="/Bitacora">Bitacora</router-link>
           </v-list-item-title>
         </v-list-item>
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Parametros">Parametros</router-link>
+            <router-link to="/Transacciones">Transacciones</router-link>
           </v-list-item-title>
         </v-list-item>
         
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/Peliculas">Peliculas</router-link>
+            <router-link to="/Descargas">Descargas</router-link>
           </v-list-item-title>
         </v-list-item>
         
          <v-list-item>
           <v-list-item-title>
-            <router-link to="/Libros">Libros</router-link>
+            <router-link to="/Errores">Errores</router-link>
           </v-list-item-title>
         </v-list-item>
         
-         <v-list-item>
-          <v-list-item-title>
-            <router-link to="/Musica">Musica</router-link>
-          </v-list-item-title>
-        </v-list-item>
 
 
       </v-list-item-group>
