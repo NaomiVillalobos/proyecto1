@@ -35,7 +35,9 @@ export default {
                       </v-list-item>
                       <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/users">Asignar roles</router-link>
+                          <router-link to="/createUser"
+                            >Asignar roles</router-link
+                          >
                         </v-list-item-title>
                       </v-list-item>
                     </v-list-item-group>
@@ -48,7 +50,7 @@ export default {
 
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/users">Usuarios</router-link>
+            <router-link to="/movies">Peliculas</router-link>
           </v-list-item-title>
         </v-list-item>
 
