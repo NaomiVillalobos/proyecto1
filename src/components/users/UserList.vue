@@ -118,7 +118,7 @@ export default {
   <input type="checkbox" id="consultas" value="Consultas" v-model="checked">
   <label for="mike">Consultas</label>
   <br>
-  <span>Checked names: {{ checked }}</span>
+  <span>Checked: {{ checked }}</span>
 </div>
 new Vue({
   el: '#asignar',
