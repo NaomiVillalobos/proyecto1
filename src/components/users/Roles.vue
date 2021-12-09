@@ -21,11 +21,11 @@
 			el: '#app',
 			data: {
 				Roles: "Estos son los roles:",
-        Administrador: "Administrador",
-        Seguridad: "Seguridad",
-        Consecutivo: "Consecutivo",
-        Mantenimiento: "Mantenimiento",
-        Consulta: "Consulta"
+       			        Administrador: "Administrador",
+                                Seguridad: "Seguridad",
+                                Consecutivo: "Consecutivo",
+                                Mantenimiento: "Mantenimiento",
+                                Consulta: "Consulta"
 			}
 		})
 	</script>
