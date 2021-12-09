@@ -98,7 +98,7 @@ export default {
     },
   },
   
-  <b-button variant = "asignar">Actualizar Roles</b-button>
+  <b-button variant = "success">Actualizar Roles</b-button>
   
   
   watch: {
