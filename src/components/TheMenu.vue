@@ -42,14 +42,14 @@ export default {
                       
                        <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/verUsuario">Ver Usuario</router-link>
+                          <router-link to="/verUsuario">Ver_Usuario</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
                       
                         <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/cambiarContraseña">Cambiar Contraseña</router-link>
+                          <router-link to="/cambiarContraseña">Cambiar_Contraseña</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
@@ -85,7 +85,7 @@ export default {
                       
                       <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/tarifas">Tarifas</router-link>
+                          <router-link to="/Tarifas">Tarifas</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
@@ -97,7 +97,7 @@ export default {
                       
                         <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/ProductosyServicios">Productos y Servicios</router-link>
+                          <router-link to="/ProductosyServicios">ProductosyServicios</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
@@ -141,7 +141,7 @@ export default {
                     >
                       <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/ProductosyServicios">Productos y Servicios</router-link>
+                          <router-link to="/ProductosyServicios">ProductosyServicios</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
