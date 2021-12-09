@@ -21,12 +21,12 @@ const routes = [{
   {
     path: "/users",
     name: "Usuarios",
-    component: () => import("../components/users/UserList.vue"),
+    component: () => import("../components/users/newUser.vue"),
   },
   {
-    path: "/createUser",
-    name: "Asignar Roles",
-    component: () => import("../components/users/newUser.vue"),
+    path: "/Roles",
+    name: "Asignar_Roles",
+    component: () => import("../components/users/Roles.vue"),
   },
                 {
     path: "/verUsuario",
