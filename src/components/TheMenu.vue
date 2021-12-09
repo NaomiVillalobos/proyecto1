@@ -36,7 +36,7 @@ export default {
                       
                       <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/createUser">Asignar roles</router-link>
+                          <router-link to="/Roles">Asignar_roles</router-link>
                         </v-list-item-title>
                       </v-list-item>
                       
