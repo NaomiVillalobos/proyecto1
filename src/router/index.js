@@ -20,19 +20,93 @@ const routes = [{
   },
   {
     path: "/users",
-    name: "users-list",
+    name: "Usuarios",
     component: () => import("../components/users/UserList.vue"),
   },
   {
     path: "/createUser",
-    name: "new-user",
+    name: "Asignar Roles",
     component: () => import("../components/users/newUser.vue"),
   },
-  {
-    path: "/movies",
-    name: "Peliculas",
-    component: () => import("../components/movies/list.vue"),
+                {
+    path: "/verUsuario",
+    name: "Ver_Usuario",
+    component: () => import("../components/users/UserList.vue"),
   },
+                
+  {
+    path: "/cambiarContraseña",
+    name: "Cambiar_Contraseña",
+    component: () => import("../components/users/cambiarContraseña.vue"),
+  },
+                
+                
+                
+  {
+    path: "/Consecutivos",
+    name: "Consecutivos",
+    component: () => import("../components/consecutivos/Consecutivos.vue"),
+  },  
+  {
+    path: "/Tarifas",
+    name: "Tarifas",
+    component: () => import("../components/consecutivos/Tarifas.vue"),
+  },
+  {
+    path: "/Parametros",
+    name: "Parametros",
+    component: () => import("../components/consecutivos/Parametros.vue"),
+  },
+  {
+    path: "/ProductosyServicios",
+    name: "ProductosyServicios",
+    component: () => import("../components/consecutivos/ProductosyServicios.vue"),
+  },
+  {
+    path: "/Peliculas",
+    name: "Peliculas",
+    component: () => import("../components/consecutivos/Peliculas.vue"),
+  },
+  {
+    path: "/Libros",
+    name: "Libros",
+    component: () => import("../components/consecutivos/Libros.vue"),
+  },
+  {
+    path: "/Musica",
+    name: "Musica",
+    component: () => import("../components/consecutivos/Musica.vue"),
+  },
+             
+                
+  
+  {
+    path: "/ProductosyServicios",
+    name: "ProductosyServicios",
+    component: () => import("../components/consecutivos/ProductosyServicios.vue"),
+  },
+  {
+    path: "/Bitacora",
+    name: "Bitacora",
+    component: () => import("../components/consultas/Bitacora.vue"),
+  },
+  {
+    path: "/Transacciones",
+    name: "Transacciones",
+    component: () => import("../components/consultas/Transacciones.vue"),
+  },  
+  {
+    path: "/Descargas",
+    name: "Descargas",
+    component: () => import("../components/consultas/Descargas.vue"),
+  },
+  {
+    path: "/Errores",
+    name: "Errores",
+    component: () => import("../components/consultas/Errores.vue"),
+  },
+ 
+  
 ];
 
 const router = new VueRouter({
