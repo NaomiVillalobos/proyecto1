@@ -97,6 +97,10 @@ export default {
       ];
     },
   },
+  
+  <b-button variant = "asignar">Actualizar Roles</b-button>
+  
+  
   watch: {
     dialog(val) {
       val || this.close();
