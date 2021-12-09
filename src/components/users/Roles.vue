@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8"></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hola mundo con Vue.js!</title>
+	<title>Roles</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
