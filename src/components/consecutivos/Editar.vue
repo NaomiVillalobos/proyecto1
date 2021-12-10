@@ -62,6 +62,8 @@
         <br>
         <b-button-variant="success">Aceptar</b-button>
         <b-button-variant="danger">Cancelar</b-button>
+        <br>
+        <a href="proyecto1/src/components/consecutivos/Nuevo.vue">Nuevo</a>
         
   </div>
 </template>
