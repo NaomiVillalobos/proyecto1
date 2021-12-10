@@ -23,7 +23,13 @@ export default {
       try {
         const raw = await fetch("../app/users");
         const data = await raw.json();
-        if (Array.isArray(data)) {
+        if (
+          typeof data === "object" &&
+          "errCode" in data &&
+          data.errCode === "403"
+        ) {
+          this.$router.push("/login");
+        } else if (Array.isArray(data)) {
           this.users = data;
         }
       } catch (e) {
@@ -97,38 +103,13 @@ export default {
       ];
     },
   },
-  
-  <b-button variant = "success">Actualizar Roles</b-button>
-  
-  
+
   watch: {
     dialog(val) {
       val || this.close();
     },
   },
 };
-
-<div id='asignar'>
-  <input type="checkbox" id="administrador" value="Administrador" v-model="checked">
-  <label for="jack">Administrador</label>
-  <input type="checkbox" id="seguridad" value="Seguridad" v-model="checked">
-  <label for="john">Seguridad</label>
-  <input type="checkbox" id="mantenimiento" value="Mantenimiento" v-model="checked">
-  <label for="mike">Mantenimiento</label>
-  <input type="checkbox" id="consultas" value="Consultas" v-model="checked">
-  <label for="mike">Consultas</label>
-  <br>
-  <span>Checked: {{ checked }}</span>
-</div>
-new Vue({
-  el: '#asignar',
-  data: {
-    Roles Asignados: []
-  }
-})
-
-
-
 </script>
 <template>
   <v-card class="mx-auto" outlined>

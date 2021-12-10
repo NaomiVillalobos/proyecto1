@@ -21,32 +21,32 @@ const routes = [{
   {
     path: "/users",
     name: "Usuarios",
-    component: () => import("../components/users/newUser.vue"),
+    component: () => import("../components/users/UserList.vue"),
   },
   {
     path: "/Roles",
     name: "Asignar_Roles",
     component: () => import("../components/users/Roles.vue"),
   },
-                {
+  {
     path: "/verUsuario",
     name: "Ver_Usuario",
     component: () => import("../components/users/UserList.vue"),
   },
-                
+
   {
     path: "/cambiarContraseña",
     name: "Cambiar_Contraseña",
     component: () => import("../components/users/cambiarContraseña.vue"),
   },
-                
-                
-                
+
+
+
   {
     path: "/Consecutivos",
     name: "Consecutivos",
     component: () => import("../components/consecutivos/Consecutivos.vue"),
-  },  
+  },
   {
     path: "/Tarifas",
     name: "Tarifas",
@@ -77,9 +77,14 @@ const routes = [{
     name: "Musica",
     component: () => import("../components/consecutivos/Musica.vue"),
   },
-             
-                
-  
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../components/login/login.vue"),
+  },
+
+
+
   {
     path: "/ProductosyServicios",
     name: "ProductosyServicios",
@@ -94,7 +99,7 @@ const routes = [{
     path: "/Transacciones",
     name: "Transacciones",
     component: () => import("../components/consultas/Transacciones.vue"),
-  },  
+  },
   {
     path: "/Descargas",
     name: "Descargas",
@@ -105,8 +110,8 @@ const routes = [{
     name: "Errores",
     component: () => import("../components/consultas/Errores.vue"),
   },
- 
-  
+
+
 ];
 
 const router = new VueRouter({

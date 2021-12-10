@@ -1,9 +1,16 @@
 const express = require("express");
 const sql = require("msnodesqlv8");
 const path = require("path");
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const app = express();
 const public = path.join(__dirname, "public");
 app.use(express.json());
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
 
 const connectionString =
     "server=.;Database=pets;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}";
@@ -49,8 +56,47 @@ let users = [{
     },
 ];
 
+app.post("/app/auth", (request, response) => {
+    const user = {
+        name: request.body.name,
+        password: request.body.password
+    };
+    if (user.name && user.password && user.name === 'admin' && user.password === 'root') {
+        request.session.loggedin = true;
+        request.session.username = user.name;
+        response.send(
+            JSON.stringify({
+                errCode: "200"
+            }))
+    } else {
+        response.send(
+            JSON.stringify({
+                errCode: "500"
+            }))
+    }
+    response.end();
+})
+
+
+const CHECK_LOGGED = (req, res, ok) => {
+    if (req.session.loggedin) {
+        ok();
+    } else {
+        res.send(JSON.stringify({
+            errCode: '403'
+        }))
+    }
+}
+
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+})
+
+
 app.get("/app/users", (req, res) => {
-    res.send(JSON.stringify(users)); //@TODO-Add query
+    CHECK_LOGGED(req, res, ok => {
+        res.send(JSON.stringify(users)); //@TODO-Add query
+    })
 });
 
 app.delete("/app/users/delete/:id", (req, res) => {
