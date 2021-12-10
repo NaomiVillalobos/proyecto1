@@ -23,6 +23,7 @@
           }
         })
         <b-form-input type="number">Consecutivo<b-form-input>
+        <br>
         <p>Posee prefijo?</p>
         <div id='prefijo'>
         <input type="checkbox" id="si" value="Si" v-model="prefijocheck">
@@ -37,3 +38,30 @@
             prefijocheck: []
           }
         })
+        
+        <b-form-input type="text">Prefijo</b-form-input>
+        <br>
+         <p>Posee rango?</p>
+        <div id='rango'>
+        <input type="checkbox" id="si" value="Si" v-model="rangocheck">
+        <label for="si">Si</label>
+       
+          <br>
+          <span>Respuesta: {{ rangocheck }}</span>
+        </div>
+        new Vue({
+          el: '#rango',
+          data: {
+            rangocheck: []
+          }
+        })
+        <br>
+         <b-form-input type="number">Rango Inicial</b-form-input>
+        <br>
+         <b-form-input type="number">Rango Final</b-form-input>
+        <br>
+        <b-button-variant="success">Aceptar</b-button>
+        <b-button-variant="danger">Cancelar</b-button>
+        
+  </div>
+</template>
