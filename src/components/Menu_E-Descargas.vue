@@ -54,13 +54,7 @@ export default {
                         </v-list-item-title>
                       </v-list-item>
 
-                      <v-list-item>
-                        <v-list-item-title>
-                          <router-link to="/cambiarContraseña"
-                            >Cambiar_Contraseña</router-link
-                          >
-                        </v-list-item-title>
-                      </v-list-item>
+                      
                     </v-list-item-group>
                   </v-list>
                 </v-expansion-panel-content>
