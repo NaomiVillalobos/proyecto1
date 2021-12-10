@@ -30,10 +30,10 @@
 		},
 		created: function(){
 			console.log("Iniciando ...");
-			this.get_contacts();
+			this.get_lista();
 		},
 		methods:{
-			get_contacts: function(){
+			get_lista: function(){
 				fetch("./lista.vue")
 				.then(response=>response.json())
 				.then(json=>{this.all_data=json.lista})
