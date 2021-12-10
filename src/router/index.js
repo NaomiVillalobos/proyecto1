@@ -110,6 +110,54 @@ const routes = [{
     name: "Errores",
     component: () => import("../components/consultas/Errores.vue"),
   },
+                
+                
+                
+                
+       
+                
+                
+                
+                
+  {
+    path: "/Crear_Cuenta",
+    name: "Crear_Cuenta",
+    component: () => import("../components/menu/Crear_Cuenta.vue"),
+  },
+  {
+    path: "/TheMenu",
+    name: "E-Descargas_BackEnd",
+    component: () => import("../components/TheMenu.vue"),
+  },
+  {
+    path: "/Peliculas",
+    name: "Peliculas",
+    component: () => import("../components/consecutivos/Peliculas.vue"),
+  },
+  {
+    path: "/Libros",
+    name: "Libros",
+    component: () => import("../components/consecutivos/Libros.vue"),
+  }, 
+  {
+    path: "/Musica",
+    name: "Musica",
+    component: () => import("../components/consecutivos/Musica.vue"),
+  },
+  {
+    path: "/Tarjeta",
+    name: "tarjeta",
+    component: () => import("../components/menu/Tarjeta.vue"),
+  },
+  {
+    path: "/Easy_Pay",
+    name: "Easy_Pay",
+    component: () => import("../components/menu/Easy_Pay.vue"),
+  },
+
+
+
+
 
 
 ];
