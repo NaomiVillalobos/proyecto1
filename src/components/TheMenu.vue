@@ -42,12 +42,6 @@ export default {
 
                       <v-list-item>
                         <v-list-item-title>
-                          <router-link to="/Roles">Roles</router-link>
-                        </v-list-item-title>
-                      </v-list-item>
-
-                      <v-list-item>
-                        <v-list-item-title>
                           <router-link to="/Roles">Asignar_roles</router-link>
                         </v-list-item-title>
                       </v-list-item>

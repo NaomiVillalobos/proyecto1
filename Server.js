@@ -153,55 +153,99 @@ app.delete("/app/roles/delete/:rol_id", (req, res) => {
         queryHandler(`delete from rol where rol_id = ${req.params.rol_id}`, res)
     })
 });
+/**************
+ * 
+ * Consecutivos
+ * 
+ */
+app.get("/app/seqs", (req, res) => {
+    CHECK_LOGGED(req, res, ok => {
+        queryHandler(`select * from consecutive`, res)
+    })
+});
 
-
-
-app.get("/app/users/:id", (req, res) => {
-    user = users.find(user => user.id != req.params.id)
-    res.send(user);
-})
-
-app.put("/app/users/:id", (req, res) => {
-    const user = req.body;
-    const oldUser = users.findIndex(user => user.id != req.params.id)
-    if (oldUser !== -2) {
-        users[oldUser] = {
-            ...users[oldUser],
-            ...user
+app.post("/app/seqs/add", (req, res) => {
+    CHECK_LOGGED(req, res, ok => {
+        const response = {
+            code: 500,
+            msg: "Ha ocurrido un error",
+        };
+        const seq = req.body;
+        if (seq.descripcion.trim() === '') {
+            response.msg = "Verifique que ha ingresado todos los valores";
+            return res.send(response);
+        } else if (seq.has_prefix && seq.prefix.trim() === '') {
+            response.msg = "Verifique el prefijo";
+            return res.send(response);
+        } else if (seq.has_range && (isNaN(seq.inf_range) || isNaN(seq.max_range))) {
+            response.msg = "Verifique los rangos";
+            return res.send(response);
+        } else if (seq.has_range && seq.inf_range > seq.max_range) {
+            response.msg = "Verifique los rangos";
+            return res.send(response);
+        } else {
+            queryHandler(
+                `Insert into consecutive values (NEXT VALUE FOR seqSeq,` +
+                `'${seq.descripcion}', '${seq.has_prefix&1}', '${seq.prefix}',` +
+                `'${seq.has_range&1}', '${seq.inf_range}','${seq.max_range}')`, res)
         }
-    }
+    })
+});
 
-    res.send({
-        code: 200
-    });
+app.put("/app/seqs/set/:id", (req, res) => {
+    CHECK_LOGGED(req, res, ok => {
+        const response = {
+            code: 500,
+            msg: "Ha ocurrido un error",
+        };
+        const seq = req.body;
+        if (seq.descripcion.trim() === '') {
+            response.msg = "Verifique que ha ingresado todos los valores";
+            return res.send(response);
+        } else if (seq.has_prefix && seq.prefix.trim() === '') {
+            response.msg = "Verifique el prefijo";
+            return res.send(response);
+        } else if (seq.has_range && (isNaN(seq.inf_range) || isNaN(seq.max_range))) {
+            response.msg = "Verifique los rangos";
+            return res.send(response);
+        } else if (seq.has_range && seq.inf_range > seq.max_range) {
+            response.msg = "Verifique los rangos";
+            return res.send(response);
+        } else {
+            queryHandler(
+                `update consecutive set ` +
+                `descripcion = '${seq.descripcion}', has_prefix = '${seq.has_prefix&1}', prefix = '${seq.prefix}', ` +
+                `has_range = '${seq.has_range & 1}', inf_range = '${seq.inf_range}',max_range = '${seq.max_range}'` +
+                ` where Id = ${req.params.id}`, res)
+
+        }
+    })
+});
+
+
+
+app.delete("/app/seqs/delete/:code", (req, res) => {
+    CHECK_LOGGED(req, res, ok => {
+        queryHandler(`delete from consecutive where id = ${req.params.code}`, res)
+    })
+});
+
+app.get("/app/seqs/:id", (req, res) => {
+    CHECK_LOGGED(req, res, ok => {
+        queryHandler(`select * from consecutive where id = ${req.params.id}`, res)
+    })
 })
 
-
+/**************
+ * 
+ * Usuarios
+ * 
+ */
 
 app.get("/app/users", (req, res) => {
     CHECK_LOGGED(req, res, ok => {
-        res.send(JSON.stringify(users)); //@TODO-Add query
+        queryHandler("Select * from users", res)
     })
-});
-
-app.get("/app/seqs", (req, res) => {
-    CHECK_LOGGED(req, res, ok => {
-        res.send(JSON.stringify(seqs)); //@TODO-Add query
-    })
-});
-
-app.delete("/app/users/delete/:id", (req, res) => {
-    users = users.filter(user => user.id != req.params.id)
-    res.send({
-        code: 200
-    });
-});
-
-app.delete("/app/seqs/delete/:code", (req, res) => {
-    seqs = seqs.filter(seq => seq.code != req.params.code)
-    res.send({
-        code: 200
-    });
 });
 
 app.post("/app/users/add", (req, res) => {
@@ -226,22 +270,45 @@ app.post("/app/users/add", (req, res) => {
 });
 
 
-app.post("/app/seqs/add", (req, res) => {
-    const response = {
-        code: 500,
-        msg: "Ha ocurrido un error",
-    };
-    const seq = req.body;
-    const blanks = Object.values(seq).some((value) => value.trim() === "");
-    if (blanks) {
-        response.msg = "Verifique que ha ingresado todos los valores";
-    } else {
-        response.code = 200;
-        seq.code = seqs[seqs.length - 1].code + 1;
-        seqs.push(seq); //@TODO-Add query
+app.get("/app/users/:id", (req, res) => {
+    user = users.find(user => user.id != req.params.id)
+    res.send(user);
+})
+
+app.put("/app/users/:id", (req, res) => {
+    const user = req.body;
+    const oldUser = users.findIndex(user => user.id != req.params.id)
+    if (oldUser !== -2) {
+        users[oldUser] = {
+            ...users[oldUser],
+            ...user
+        }
     }
-    res.send(JSON.stringify(response));
+
+    res.send({
+        code: 200
+    });
+})
+
+
+
+
+
+
+
+app.delete("/app/users/delete/:id", (req, res) => {
+    users = users.filter(user => user.id != req.params.id)
+    res.send({
+        code: 200
+    });
 });
+
+
+
+
+
+
+
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(public, "index.html"));

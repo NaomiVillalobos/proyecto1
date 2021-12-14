@@ -23,14 +23,15 @@ export default {
       try {
         const raw = await fetch("../app/seqs");
         const data = await raw.json();
+        this.loading = false;
         if (
           typeof data === "object" &&
           "errCode" in data &&
           data.errCode === "403"
         ) {
           this.$router.push("/login");
-        } else if (Array.isArray(data)) {
-          this.seqs = data;
+        } else if (Array.isArray(data.rows)) {
+          this.seqs = data.rows;
         }
       } catch (e) {
         this.$swal({
@@ -44,22 +45,22 @@ export default {
       }
     },
     editItem(item) {
-      console.log(item);
+      this.$router.push("/setSeq/" + item.Id);
     },
     async deleteItem(item) {
       try {
         this.$swal({
           icon: "question",
-          title: `¿Seguro que desea eliminar la secuencia ${item.code}?`,
+          title: `¿Seguro que desea eliminar la secuencia ${item.descripcion}?`,
           showCancelButton: true,
           cancelButtonText: "Cancelar",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            const raw = await fetch(`../app/seqs/delete/${item.code}`, {
+            const raw = await fetch(`../app/seqs/delete/${item.Id}`, {
               method: "DELETE",
             });
             const res = await raw.json();
-            if (res.code === 200) {
+            if (res.errCode === "200") {
               this.$swal({
                 icon: "success",
                 title: "Registro eliminado correctamente",
@@ -88,17 +89,31 @@ export default {
     tableHeaders() {
       return [
         {
-          text: "Código",
-          value: "code",
-        },
-        {
           text: "Descripción",
-          value: "description",
+          value: "descripcion",
+        },
+
+        {
+          text: "Tiene prefijo",
+          value: "has_prefix",
         },
         {
-          text: "Consecutivo",
-          value: "seq",
+          text: "Prefijo",
+          value: "prefix",
         },
+        {
+          text: "Tiene rango",
+          value: "has_range",
+        },
+        {
+          text: "Rango inferior",
+          value: "inf_range",
+        },
+        {
+          text: "Rango superior",
+          value: "max_range",
+        },
+
         { text: "Actions", value: "actions", sortable: false, align: "center" },
       ];
     },
@@ -119,7 +134,7 @@ export default {
         :headers="tableHeaders"
         :items="seqs"
         :items-per-page="5"
-        loading="loading"
+        :loading="loading"
         loading-text="Loading... Please wait"
       >
         <template v-slot:top>

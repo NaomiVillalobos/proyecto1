@@ -53,9 +53,16 @@ const routes = [{
 
 
   {
+
     path: "/Consecutivos",
     name: "Consecutivos",
     component: () => import("../components/consecutivos/Consecutivos.vue"),
+  },
+  {
+
+    path: "/setSeq/:id",
+    name: "Consecutivos",
+    component: () => import("../components/consecutivos/newSeq.vue"),
   },
   {
     path: "/Tarifas",

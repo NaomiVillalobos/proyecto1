@@ -5,6 +5,8 @@ export default {
     return {
       modeSet: false,
       userSet: null,
+      roles: [],
+      seqs: [],
       rules: {
         valid: true,
         generic: [(v) => !!v || "Valor es requerido"],
@@ -29,6 +31,8 @@ export default {
         name: "",
         password: "",
         passwordConfirm: "",
+        IDRol: "",
+        IDConsecutive: "",
         mail: "",
         group: "",
         securityQuestion: "",
@@ -36,6 +40,11 @@ export default {
       },
       nameErrors: [],
     };
+  },
+
+  mounted() {
+    this.getRoles();
+    this.getSeqs();
   },
 
   async beforeMount() {
@@ -48,6 +57,17 @@ export default {
     }
   },
   methods: {
+    async getRoles() {
+      const raw = await fetch("../app/roles");
+      const data = await raw.json();
+      this.roles = data.rows;
+    },
+    async getSeqs() {
+      const raw = await fetch("../app/seqs");
+      const data = await raw.json();
+      this.seqs = data.rows;
+    },
+
     async submit(event) {
       try {
         event.preventDefault();
@@ -101,14 +121,19 @@ export default {
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-form ref="form" @submit="submit" lazy-validation v-model="valid">
+        <v-form
+          ref="form"
+          @submit="submit"
+          lazy-validation
+          v-model="rules.valid"
+        >
           <v-card>
             <v-card-text>
               <v-text-field
                 v-model="userModel.name"
                 :error-messages="nameErrors"
                 :rules="rules.generic"
-                label="User name"
+                label="Nombre del usuario"
                 required
               ></v-text-field>
               <v-text-field
@@ -119,14 +144,23 @@ export default {
                 type="email"
                 required
               ></v-text-field>
-              <v-text-field
-                v-model="userModel.group"
-                :error-messages="nameErrors"
-                :rules="rules.generic"
-                label="Grupo"
-                type="text"
-                required
-              ></v-text-field>
+              <v-select
+                return-object
+                data-app
+                :items="roles"
+                v-model="userModel.IDRol"
+                item-Text="descripcion"
+                item-Value="rol_id"
+                label="Seleccione el rol del usuario"
+              ></v-select>
+              <v-select
+                return-object
+                :items="seqs"
+                v-model="userModel.consecutive"
+                item-Text="descripcion"
+                item-Value="Id"
+                label="Seleccione la secuencia del usuario"
+              ></v-select>
               <v-text-field
                 v-if="!modeSet"
                 v-model="userModel.password"
@@ -142,7 +176,7 @@ export default {
                 :error-messages="nameErrors"
                 :rules="rules.passwordConfirm"
                 type="password"
-                label="Confirm Password"
+                label="Confirmar Password"
                 required
               ></v-text-field>
 
@@ -151,7 +185,7 @@ export default {
                 v-model="userModel.securityQuestion"
                 :error-messages="nameErrors"
                 :rules="rules.generic"
-                label="Security Question"
+                label="¿Helado favorito?"
                 required
               ></v-text-field>
               <v-text-field
@@ -159,7 +193,7 @@ export default {
                 v-model="userModel.securityQuestionConfirm"
                 :rules="rules.confirmQuestion"
                 :error-messages="nameErrors"
-                label="Confirm Security Question"
+                label="Confirmar helado favorito"
                 required
               ></v-text-field>
             </v-card-text>
