@@ -17,7 +17,7 @@ export default {
 };
 </script>
 <template>
-  <v-navigation-drawer v-model="drawer" absolute>
+  <v-navigation-drawer v-model="drawer">
     <v-list nav dense>
       <v-list-item-group
         v-model="group"
@@ -37,6 +37,12 @@ export default {
                       <v-list-item>
                         <v-list-item-title>
                           <router-link to="/users">Usuarios</router-link>
+                        </v-list-item-title>
+                      </v-list-item>
+
+                      <v-list-item>
+                        <v-list-item-title>
+                          <router-link to="/Roles">Roles</router-link>
                         </v-list-item-title>
                       </v-list-item>
 

@@ -3,6 +3,8 @@ export default {
   name: "new-user",
   data() {
     return {
+      modeSet: false,
+      userSet: null,
       rules: {
         valid: true,
         generic: [(v) => !!v || "Valor es requerido"],
@@ -35,6 +37,16 @@ export default {
       nameErrors: [],
     };
   },
+
+  async beforeMount() {
+    if (this.$route.params.id) {
+      this.modeSet = true;
+      this.userSet = this.$route.params.id;
+      const raw = await fetch("../app/users/" + this.userSet);
+      const user = await raw.json();
+      this.userModel = { ...this.userModel, ...user };
+    }
+  },
   methods: {
     async submit(event) {
       try {
@@ -48,7 +60,7 @@ export default {
           });
         }
         const raw = await fetch("../app/users/add", {
-          method: "POST",
+          method: this.modeSet ? "PUT" : "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -59,7 +71,9 @@ export default {
         if (typeof res === "object" && "code" in res && res.code === 200) {
           this.$swal({
             icon: "success",
-            title: "Registro añadido de manera correcta",
+            title: `Registro ${
+              this.modeSet ? "modificado" : "añadido"
+            } de manera correcta`,
           }).then((result) => {
             if (result.isConfirmed) {
               this.$router.push("/users");
@@ -114,6 +128,7 @@ export default {
                 required
               ></v-text-field>
               <v-text-field
+                v-if="!modeSet"
                 v-model="userModel.password"
                 :error-messages="nameErrors"
                 :rules="rules.generic"
@@ -122,6 +137,7 @@ export default {
                 required
               ></v-text-field>
               <v-text-field
+                v-if="!modeSet"
                 v-model="userModel.passwordConfirm"
                 :error-messages="nameErrors"
                 :rules="rules.passwordConfirm"
@@ -131,6 +147,7 @@ export default {
               ></v-text-field>
 
               <v-text-field
+                v-if="!modeSet"
                 v-model="userModel.securityQuestion"
                 :error-messages="nameErrors"
                 :rules="rules.generic"
@@ -138,6 +155,7 @@ export default {
                 required
               ></v-text-field>
               <v-text-field
+                v-if="!modeSet"
                 v-model="userModel.securityQuestionConfirm"
                 :rules="rules.confirmQuestion"
                 :error-messages="nameErrors"

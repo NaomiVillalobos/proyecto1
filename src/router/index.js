@@ -24,7 +24,17 @@ const routes = [{
     component: () => import("../components/users/UserList.vue"),
   },
   {
-    path: "/Roles",
+    path: "/createUser",
+    name: "Usuarios",
+    component: () => import("../components/users/newUser.vue"),
+  },
+  {
+    path: "/createUser/:id",
+    name: "Usuarios",
+    component: () => import("../components/users/newUser.vue"),
+  },
+  {
+    path: "/assing-Roles",
     name: "Asignar_Roles",
     component: () => import("../components/users/Roles.vue"),
   },
@@ -51,6 +61,11 @@ const routes = [{
     path: "/Tarifas",
     name: "Tarifas",
     component: () => import("../components/consecutivos/Tarifas.vue"),
+  },
+  {
+    path: "/newSeq",
+    name: "Tarifas",
+    component: () => import("../components/consecutivos/newSeq.vue"),
   },
   {
     path: "/Parametros",
@@ -110,15 +125,6 @@ const routes = [{
     name: "Errores",
     component: () => import("../components/consultas/Errores.vue"),
   },
-                
-                
-                
-                
-       
-                
-                
-                
-                
   {
     path: "/Crear_Cuenta",
     name: "Crear_Cuenta",
@@ -138,7 +144,7 @@ const routes = [{
     path: "/Libros",
     name: "Libros",
     component: () => import("../components/consecutivos/Libros.vue"),
-  }, 
+  },
   {
     path: "/Musica",
     name: "Musica",
@@ -153,6 +159,16 @@ const routes = [{
     path: "/Easy_Pay",
     name: "Easy_Pay",
     component: () => import("../components/menu/Easy_Pay.vue"),
+  },
+  {
+    path: "/roles",
+    name: "Roles",
+    component: () => import("../components/Roles/role-list.vue"),
+  },
+  {
+    path: "/new-role",
+    name: "Roles",
+    component: () => import("../components/Roles/role-add.vue"),
   },
 
 

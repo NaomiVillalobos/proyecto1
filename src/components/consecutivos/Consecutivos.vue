@@ -1,45 +1,142 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Consecutivo</title>
-	<script type="text/javascript" src="vue.min.js"></script>
-</head>
-<body>
-<h1>Lista de Consecutivos</h1>
-<div id="app" class="container">
-<table border="1">
-<thead>
-	<th>Codigo</th>
-	<th>Descripcion</th>
-	<th>Consecutivo</th>
-	<th>Edicion</th>
-</thead>
-	<tr v-for="data in all_data ">
-		<td>{{data.codigo}}</td>
-		<td>{{data.descripcion}}</td>
-		<td>{{data.consecutivo}}</td>
-		<td>{{data.edicion}}</td>
-	</tr>
-</ul>
-</div>
 <script>
-	var app = new Vue({
-		el: "#app",
-		data: {
-			all_data:[]
-		},
-		created: function(){
-			console.log("Iniciando ...");
-			this.get_lista();
-		},
-		methods:{
-			get_lista: function(){
-				fetch("./lista.vue")
-				.then(response=>response.json())
-				.then(json=>{this.all_data=json.lista})
-			}
-		}
-	});
+export default {
+  name: "Seq-list",
+  data() {
+    return {
+      loading: true,
+      dialog: false,
+      seqs: [],
+    };
+  },
+
+  mounted() {
+    this.getData();
+  },
+
+  methods: {
+    close() {
+      this.dialog = false;
+    },
+
+    async getData() {
+      this.loading = true;
+      try {
+        const raw = await fetch("../app/seqs");
+        const data = await raw.json();
+        if (
+          typeof data === "object" &&
+          "errCode" in data &&
+          data.errCode === "403"
+        ) {
+          this.$router.push("/login");
+        } else if (Array.isArray(data)) {
+          this.seqs = data;
+        }
+      } catch (e) {
+        this.$swal({
+          icon: "error",
+          title: "Oops...",
+          text: "Ha ocurrido un error",
+        });
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    editItem(item) {
+      console.log(item);
+    },
+    async deleteItem(item) {
+      try {
+        this.$swal({
+          icon: "question",
+          title: `¿Seguro que desea eliminar la secuencia ${item.code}?`,
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            const raw = await fetch(`../app/seqs/delete/${item.code}`, {
+              method: "DELETE",
+            });
+            const res = await raw.json();
+            if (res.code === 200) {
+              this.$swal({
+                icon: "success",
+                title: "Registro eliminado correctamente",
+              });
+            } else {
+              this.$swal({
+                icon: "error",
+                title: "Oops...",
+                text: "Ha ocurrido un error",
+              });
+            }
+            this.getData();
+          }
+        });
+      } catch (e) {
+        this.$swal({
+          icon: "error",
+          title: "Oops...",
+          text: "Ha ocurrido un error",
+        });
+      }
+    },
+  },
+
+  computed: {
+    tableHeaders() {
+      return [
+        {
+          text: "Código",
+          value: "code",
+        },
+        {
+          text: "Descripción",
+          value: "description",
+        },
+        {
+          text: "Consecutivo",
+          value: "seq",
+        },
+        { text: "Actions", value: "actions", sortable: false, align: "center" },
+      ];
+    },
+  },
+
+  watch: {
+    dialog(val) {
+      val || this.close();
+    },
+  },
+};
 </script>
-</body>
-</html>
+<template>
+  <v-card class="mx-auto" outlined>
+    <v-card-text>
+      <v-data-table
+        class="elevation-1"
+        :headers="tableHeaders"
+        :items="seqs"
+        :items-per-page="5"
+        loading="loading"
+        loading-text="Loading... Please wait"
+      >
+        <template v-slot:top>
+          <v-toolbar flat>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" dark class="mb-2" to="/newSeq">
+              New Item
+            </v-btn>
+          </v-toolbar>
+        </template>
+        <template v-slot:item.actions="{ item }">
+          <v-icon small class="mr-2" @click="editItem(item)">
+            mdi-pencil
+          </v-icon>
+          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        </template>
+      </v-data-table>
+    </v-card-text>
+  </v-card>
+</template>

@@ -1,11 +1,11 @@
 <script>
 export default {
-  name: "user-list",
+  name: "role-list",
   data() {
     return {
       loading: true,
       dialog: false,
-      users: [],
+      roles: [],
     };
   },
 
@@ -21,7 +21,7 @@ export default {
     async getData() {
       this.loading = true;
       try {
-        const raw = await fetch("../app/users");
+        const raw = await fetch("../app/roles");
         const data = await raw.json();
         if (
           typeof data === "object" &&
@@ -29,8 +29,8 @@ export default {
           data.errCode === "403"
         ) {
           this.$router.push("/login");
-        } else if (Array.isArray(data)) {
-          this.users = data;
+        } else if ("rows" in data && Array.isArray(data.rows)) {
+          this.roles = data.rows;
         }
       } catch (e) {
         this.$swal({
@@ -44,22 +44,29 @@ export default {
       }
     },
     editItem(item) {
-      this.$router.push("/createUser/" + item.id);
+      console.log(item);
     },
     async deleteItem(item) {
       try {
         this.$swal({
           icon: "question",
-          title: `¿Seguro que desea eliminar al usuario ${item.name}?`,
+          title: `¿Seguro que desea eliminar el rol ${item.rol_id}?`,
           showCancelButton: true,
           cancelButtonText: "Cancelar",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            const raw = await fetch(`../app/users/delete/${item.id}`, {
+            const raw = await fetch(`../app/roles/delete/${item.rol_id}`, {
               method: "DELETE",
             });
             const res = await raw.json();
-            if (res.code === 200) {
+            if (
+              typeof res === "object" &&
+              "errCode" in res &&
+              res.errCode === "403"
+            ) {
+              this.$router.push("/login");
+            }
+            if (res.errCode === "200") {
               this.$swal({
                 icon: "success",
                 title: "Registro eliminado correctamente",
@@ -88,16 +95,13 @@ export default {
     tableHeaders() {
       return [
         {
-          text: "User name",
-          value: "name",
+          text: "Id",
+          value: "rol_id",
+          align: "start",
         },
         {
-          text: "E-mail",
-          value: "mail",
-        },
-        {
-          text: "User group",
-          value: "group",
+          text: "Descripción",
+          value: "descripcion",
         },
         { text: "Actions", value: "actions", sortable: false, align: "center" },
       ];
@@ -117,7 +121,7 @@ export default {
       <v-data-table
         class="elevation-1"
         :headers="tableHeaders"
-        :items="users"
+        :items="roles"
         :items-per-page="5"
         loading="loading"
         loading-text="Loading... Please wait"
@@ -125,7 +129,7 @@ export default {
         <template v-slot:top>
           <v-toolbar flat>
             <v-spacer></v-spacer>
-            <v-btn color="primary" dark class="mb-2" to="/createUser">
+            <v-btn color="primary" dark class="mb-2" to="/new-role">
               New Item
             </v-btn>
           </v-toolbar>
@@ -140,3 +144,8 @@ export default {
     </v-card-text>
   </v-card>
 </template>
+<style scoped>
+.v-data-table-header th {
+  white-space: nowrap;
+}
+</style>

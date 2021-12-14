@@ -18,20 +18,20 @@ export default {
 </script>
 
 <template>
-  <v-card class="mx-auto overflow-hidden" height="500px">
+  <v-card class="mx-auto overflow-hidden" height="100%">
     <v-app-bar color="deep-purple accent-4" dark> </v-app-bar>
 
     <v-card-text style="height: 150%">
-      <container>
+      <v-container>
         <v-row>
-          <v-col md="2">
+          <v-col md="3" sm="3" lg="3">
             <the-menu :drawer="true"></the-menu>
           </v-col>
-          <v-col>
+          <v-col md="9" sm="9" lg="9">
             <router-view></router-view>
           </v-col>
         </v-row>
-      </container>
+      </v-container>
     </v-card-text>
   </v-card>
 </template>
