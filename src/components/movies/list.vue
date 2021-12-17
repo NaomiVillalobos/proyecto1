@@ -6,5 +6,5 @@ export default {
 };
 </script>
 <template>
-  <v-row> Hola Mundo </v-row>
+  <v-row> Hola Mundo aqui está la lista</v-row>
 </template>
